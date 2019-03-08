@@ -28,7 +28,8 @@ public class Characters implements Serializable {
     @Column(name = "characterLvl", nullable = false)
     private int characterLvl;
 
-
+    //@Column(name = "user_userID", nullable = false)
+    //private int user_userID;
 
 
     // CONSTRUCTORS
@@ -51,7 +52,7 @@ public class Characters implements Serializable {
     public int getUserID() {
         return userID;
     }
-    public void setUserID(int user_userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 
@@ -77,6 +78,15 @@ public class Characters implements Serializable {
         this.characterLvl = characterLvl;
     }
 
+    /*
+    public int getUserUserID() {
+        return user_userID;
+    }
+    public void setUserUserID(int user_userID) {
+        this.user_userID = user_userID;
+    }
+    */
+
 
     // OVERRIDE METHOD
     @Override
@@ -89,8 +99,8 @@ public class Characters implements Serializable {
             nameText = "\t\tName: ";
         }
 
-        return "Owned by userID: " + userID +
-                "\tcharID: " + characterID +
+        return "Owned by userID: " +userID +
+                "\t\tcharID: " + characterID +
                 "\tClass:"+ className +
                 nameText+ characterName +
                 " (lvl:" + characterLvl+")";
@@ -99,7 +109,6 @@ public class Characters implements Serializable {
     public String returnUserID (int ID) {
         String string = getUserID() + "";
         return string;
-
     }
 
 

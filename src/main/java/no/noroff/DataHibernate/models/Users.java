@@ -13,8 +13,9 @@ public class Users {
     @Id
     //@GeneratedValue(generator = "incrementer")
     //@GenericGenerator(name = "incrementer", strategy = "increment")
+    //@GeneratedValue
     @Column(name = "userID", unique = true)
-    private int userID;
+    public int userID;
 
     @Column(name = "userName", nullable = false)
     private String userName;
@@ -22,9 +23,10 @@ public class Users {
     @Column(name = "userEmail", nullable = false)
     private String userEmail;
 
-    @JsonIgnore
+    //@JsonIgnore
     @Column(name = "userPassword", nullable = false)
     private String userPassword;
+
 
 
     // CONSTRUCTORS
@@ -65,7 +67,7 @@ public class Users {
     }
 
 
-    @JsonIgnore
+    //@JsonIgnore
     public String getUserPasswordHidden() {
         String userPasswordHidden = "";
         for (int i = 0; i < userPassword.length(); i++){
@@ -81,12 +83,23 @@ public class Users {
     public String toString() {
         String userPasswordHidden = "*****";
 
+        String usrNameText ="";
+        if (userName.length() >= 8){
+            usrNameText = "\t\t";
+        } else {
+            usrNameText = "\t\t\t";
+        }
+
         return "userID: " + userID +
                 "\t\t" + userName +
-                "\t\t" + userEmail+
-                "\t" + userPasswordHidden;
+                usrNameText + userEmail+
+                "  (pw: " + userPasswordHidden + ")";
     }
 
 
+    public String returnUserID (int ID) {
+        String string = getUserID() + "";
+        return string;
+    }
 
 }

@@ -20,7 +20,8 @@ public class rpgbdController {
     @GetMapping("/users")
     public List<Users> userGet(){
         System.out.println("Returning default search of ALL users");
-        return getUsers();
+        //return getUsers();
+        return getUserNameEmail();
     }
 
     @GetMapping("/user/{ID}")

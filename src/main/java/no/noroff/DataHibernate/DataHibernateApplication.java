@@ -1,17 +1,14 @@
 package no.noroff.DataHibernate;
 
-import com.mysql.cj.xdevapi.JsonArray;
 import no.noroff.DataHibernate.models.Users;
 import no.noroff.DataHibernate.models.Characters;
 import no.noroff.DataHibernate.models.Classes;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +25,7 @@ public class DataHibernateApplication {
 
 
 		/*_____________ADD/CREATE TO TABLE__________________________*/
-		//addUser("Marius", "marius@gmail.com", "passord4");
+		//addUser("Marianne", "marri@hotmail.com", "elefant");
 
 		//addCharacter(9, "SuperCraig", "Paladin", 8);
 
@@ -45,7 +42,7 @@ public class DataHibernateApplication {
 		printClasses();
 
 		/*_____________OTHER INFO_____________________________________*/
-		getCharactersFromUser(9);
+		getCharactersFromUser(1);
 
 	}
 
@@ -67,7 +64,37 @@ public class DataHibernateApplication {
 			transaction = manager.getTransaction();
 			transaction.begin();
 
-			//userList = manager.createQuery("SELECT s FROM Users s", Users.class).getResultList();
+			userList = manager.createQuery("SELECT s FROM Users s",
+					Users.class).getResultList();
+
+			transaction.commit();
+		}catch (Exception e){
+			if(transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		finally {
+			manager.close();
+		}
+
+		return userList;
+	}
+
+
+	/** GET ALL USERS
+	 * @return all users
+	 */
+	public static List<Users> getUserNameEmail(){
+		List<Users> userList = null;
+
+		EntityManager manager =  ENTITY_MANAGER_FACTORY.createEntityManager();
+		EntityTransaction transaction = null;
+
+		try{
+			transaction = manager.getTransaction();
+			transaction.begin();
+
 			userList = manager.createQuery("SELECT s FROM Users s",
 					Users.class).getResultList();
 
@@ -157,7 +184,7 @@ public class DataHibernateApplication {
 	 * @param ID id of user
 	 * @return selected user
 	 */
-	public static Users getUser(int ID){
+	public static Users getUser (int ID) {
 		Users usr = null;
 
 		EntityManager manager =  ENTITY_MANAGER_FACTORY.createEntityManager();
@@ -405,6 +432,7 @@ public class DataHibernateApplication {
 
 		addCharacter(userID, characterName, className, characterLvl);
 	}
+
 
 
 
