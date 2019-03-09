@@ -62,13 +62,14 @@ public class rpgbdController {
 
     @PostMapping("/user")
     public void createUser(@RequestBody Users newUser){
-        System.out.println("Adding new user:\n"+newUser);
+        System.out.println("ADDED NEW USER");
+        //System.out.println("Adding new user:\n"+newUser);
         addUser(newUser);
     }
 
     @PostMapping("/character")
     public void createCharacter(@RequestBody Map<String, String> newChar){
-        System.out.println("Adding new character:");
+        System.out.println("ADDED NEW CHARACTER");
 
         for(String key:newChar.keySet()){
             System.out.println(key + " : " + newChar.get(key));

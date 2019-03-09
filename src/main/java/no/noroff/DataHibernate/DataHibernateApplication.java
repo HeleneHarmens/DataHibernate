@@ -18,7 +18,9 @@ public class DataHibernateApplication {
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY =
 			Persistence.createEntityManagerFactory("mamps");
 
-
+	/**
+	 * MAIN METHOD
+	 */
 	public static void main(String[] args) {
 
 		SpringApplication.run(DataHibernateApplication.class, args);

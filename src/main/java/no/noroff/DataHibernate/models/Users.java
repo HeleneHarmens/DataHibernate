@@ -2,6 +2,8 @@ package no.noroff.DataHibernate.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,7 +25,7 @@ public class Users {
     @Column(name = "userEmail", nullable = false)
     private String userEmail;
 
-    //@JsonIgnore
+    @JsonIgnore
     @Column(name = "userPassword", nullable = false)
     private String userPassword;
 
@@ -58,16 +60,17 @@ public class Users {
         this.userEmail = userEmail;
     }
 
-
+    @JsonIgnore
     public String getUserPassword() {
         return userPassword;
     }
+    @JsonProperty
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
 
 
-    //@JsonIgnore
+    @JsonIgnore
     public String getUserPasswordHidden() {
         String userPasswordHidden = "";
         for (int i = 0; i < userPassword.length(); i++){
