@@ -14,7 +14,7 @@
 *for example:* `http://localhost:8080/characters`
 
 `/character/{id}` to get character by ID number.    
-*for example:* `http://localhost:8080/characters`
+*for example:* `http://localhost:8080/character/1`
 
 `/classes` to get all classes.    
 *for example:* `http://localhost:8080/classes`
